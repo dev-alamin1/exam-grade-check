@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Grade </title>
+    <style>
+        section {
+            width: 50%;
+            margin: 20px auto;
+            border: 1px rgb(233, 12, 12);
+            height: 200px;
+        }
+
+        .result {
+            margin-top: 5px;
+        }
+
+        input {
+            padding: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            border: 1px solid red;
+        }
+
+        .btn {
+            margin-top: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fd79a8;
+            background-color: #81ecec;
+            word-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: rgb(110, 102, 102);
+            color: rgb(235, 233, 233);
+        }
+
+        .marks-container {
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="grade-section">
+        <div class="marks-container">
+            <div>
+                <input type="number" id="marks" placeholder="input your mark">
+                <br>
+                <h2 id="result" class="result"></h2>
+                <button id="checkGrade" class="btn">Check your grade</button>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+
+<script>
+    let btn = document.getElementById("checkGrade");
+    let marks = document.getElementById("marks");
+    let result = document.getElementById("result");
+    result.style.display = "none";
+
+    // hide result 
+
+
+    btn.addEventListener("click", function () {
+        marks = Number(marks.value);
+        let grade = gradePoint(marks);
+        result.innerHTML = grade;
+        result.style.display = "block";
+
+        setTimeout(function () {
+            result.style.display = "none";
+            result.innerHTML = " ";
+            document.getElementById("marks").value = " ";
+            location.reload();
+        }, 4000)
+    });
+
+    function gradePoint(marks) {
+        var grade = "";
+        //a+ mark 
+        if (marks >= 90 && marks < 100) {
+            grade = "<p style='color:#fd79a8;'>Your grade is A+ , Congratulation Man!</p>";
+        } else if (marks >= 80 && marks < 90) {
+            grade = "Your grade is A";
+        } else if (marks >= 70 && marks < 80) {
+            grade = "Your grade is B";
+        } else if (marks >= 60 && marks < 70) {
+            grade = "Your grade is C";
+        } else if (marks >= 50 && marks < 60) {
+            grade = "Your grade is B";
+        } else if (marks > 0 && marks < 50) {
+            grade = "<p style='color:red;'>Your grade is F</p>";
+        } else if (marks >= 10) {
+            grade = "<p style='color:red;'>হেতে কামডা করছে কি ? </p>";
+        }
+        else if (marks == "") {
+            grade = "Enter number between 0 to 100";
+        }
+        return grade;
+    }
+
+</script>
